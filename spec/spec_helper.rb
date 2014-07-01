@@ -1,15 +1,23 @@
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
+
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 require 'rspec/rails'
 require 'ffaker'
+require 'pry-rails'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+Dir["#{File.dirname(__FILE__)}/support/**"].each do |f|
+  require File.expand_path(f)
+end
 
 # Requires factories defined in spree_core
 require 'spree/testing_support/factories'
+
+Dir["#{File.dirname(__FILE__)}/factories/**"].each do |f|
+  require File.expand_path(f)
+end
 
 #Requires controller_requests defined in spree_core
 # require 'spree/testing_support/controller_requests'
@@ -21,4 +29,5 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+  config.include FactoryGirl::Syntax::Methods
 end
