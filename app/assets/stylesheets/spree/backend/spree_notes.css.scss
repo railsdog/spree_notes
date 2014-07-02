@@ -1,0 +1,46 @@
+@import 'spree/backend/globals/functions';
+@import 'spree/backend/globals/variables_override';
+@import 'spree/backend/globals/variables';
+@import 'spree/backend/globals/mixins';
+
+.important-notes-banner{
+  .important-notes-banner-inner{
+    width: 80%;
+    padding: 7px;
+    border: 1px solid $color-action-void-brd;
+    background-color: $color-action-void-bg;
+    @include border-radius(3px);
+    color: $color-error;
+  }
+}
+
+.note{
+  width: 100%;
+  padding: 7px;
+  float: left;
+  margin-bottom: 15px;
+  border: 1px solid $color-border;
+  @include border-radius(3px);
+
+  .note-icon{
+    float: left;
+    width: 25px;
+    font-size: 18px;
+    line-height:20px;
+  }
+  .note-content{
+    margin-left: 25px;
+  }
+  .note-footer{
+    width: 100%;
+    margin-left: 25px;
+    font-style: italic;
+    margin-top: 7px;
+  }
+
+  &.important{
+    .note-icon{
+      color: $color-error;
+    }
+  }
+}
