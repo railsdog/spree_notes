@@ -1,0 +1,11 @@
+<div class="note <%= note.important ? 'important' : '' %>">
+  <div class="note-icon">
+    <%= fa_icon note.important ? 'exclamation-circle' : 'pencil-square-o' %>
+  </div>
+  <div class="note-content">
+    <%= note.body %>
+  </div>
+  <div class="note-footer">
+    Created by: <%= note.author %> on <%= note.created_at.to_formatted_s(:long_ordinal) %>
+  </div>
+</div>

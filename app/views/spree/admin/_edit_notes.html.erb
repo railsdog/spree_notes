@@ -1,19 +1,9 @@
 <fieldset data-hook="notes_edit" id="admin_user_edit_notes" class="twelve columns">
   <legend>Notes</legend>
   <a name="important_notes"></a>
-  <% @user.notes.important.each do |note| %>
-    <div class="important note">
-      <div class="note-icon">
-        <%= fa_icon 'exclamation-circle' %>
-      </div>
-      <div class="note-content">
-        <%= note.body %>
-      </div>
-      <div class="note-footer">
-        Created by: <%= note.author %> on <%= note.created_at.to_formatted_s(:long_ordinal) %>
-      </div>
-    </div>
-  <% end %>
+
+  <%= render partial: 'spree/admin/note', collection: @user.notes.important %>
+  <%= render partial: 'spree/admin/note', collection: @user.notes.not_important %>
 
   <div class="form-buttons filter-actions actions" id="js-create-note-button">
     <%= button 'Create New Note', 'plus', 'button' %>
