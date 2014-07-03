@@ -1,16 +1,12 @@
-Related Products
+Related Notes
 ================
-
-[![Build Status](https://api.travis-ci.org/spree/spree_related_products.png?branch=2-2-stable)](https://travis-ci.org/spree/spree_related_products)
-[![Code Climate](https://codeclimate.com/github/spree/spree_related_products.png)](https://codeclimate.com/github/spree/spree_related_products)
-
 
 Installation
 ------------
 
 Add to `Gemfile`:
 
-    gem 'spree_notes', :git => 'git://github.com/spree/spree_related_products.git'
+    gem 'spree_notes', :git => 'git://github.com/railsdog/spree_related_products.git'
 
 Run:
 
