@@ -1,4 +1,4 @@
-Related Notes
+Spree Notes
 ================
 
 Installation
