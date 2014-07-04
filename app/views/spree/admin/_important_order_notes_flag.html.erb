@@ -1,0 +1,10 @@
+<% if @order.notes.important.count > 0 %>
+  <div class="important-notes-banner">
+    <a href="#important_notes">
+      <div class="important-notes-banner-inner twelve columns alpha">
+        <%= fa_icon 'exclamation-circle' %>
+        Please read the important notes for this order
+      </div>
+    </a>
+  </div>
+<% end %>

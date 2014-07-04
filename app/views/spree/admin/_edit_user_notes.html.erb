@@ -1,5 +1,5 @@
 <fieldset data-hook="notes_edit" id="admin_user_edit_notes" class="twelve columns">
-  <legend>Notes</legend>
+  <legend>User Notes</legend>
   <a name="important_notes"></a>
 
   <%= render partial: 'spree/admin/note', collection: @user.notes.important %>
@@ -11,16 +11,9 @@
 
   <div id="js-create-note-form" style="display:none;">
     <%= form_for @user.notes.build, url: admin_user_notes_path(@user), :method => :post do |f| %>
-      <%= f.field_container :body do %>
-        <%= f.label :body, 'Note' %><br />
-        <%= f.text_area :body, rows: 20, :class => 'fullwidth title' %>
-      <% end %>
-      <%= f.field_container :important do %>
-        <%= f.check_box :important, :class => '' %>
-        <%= f.label :important, 'Important - Check to mark this note as important' %>
-      <% end %>
+      <%= render partial: 'spree/admin/notes_form', locals: {f: f} %>
       <div class="form-buttons filter-actions actions">
-        <%= button 'Save' %>
+        <%= button 'Save user note' %>
       </div>
     <% end %>
   </div>

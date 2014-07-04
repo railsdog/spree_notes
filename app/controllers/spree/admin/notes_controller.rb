@@ -28,6 +28,10 @@ class Spree::Admin::NotesController < Spree::Admin::BaseController
     else
       ("Spree::" + which.capitalize).constantize
     end
-    @noteable = @noteable_klass.find(params["#{which}_id"])
+    @noteable = if @noteable_klass == Spree::Order
+      Spree::Order.includes(:notes).find_by_number!(params["#{which}_id"])  
+    else
+      @noteable_klass.find(params["#{which}_id"])
+    end
   end
 end

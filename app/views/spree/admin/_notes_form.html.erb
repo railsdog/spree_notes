@@ -1,0 +1,8 @@
+<%= f.field_container :body do %>
+  <%= f.label :body, 'Note' %><br />
+  <%= f.text_area :body, rows: 20, :class => 'fullwidth title' %>
+<% end %>
+<%= f.field_container :important do %>
+  <%= f.check_box :important, :class => '' %>
+  <%= f.label :important, 'Important - Check to mark this note as important' %>
+<% end %>

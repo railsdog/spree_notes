@@ -1,0 +1,26 @@
+<fieldset data-hook="notes_edit" id="admin_order_edit_notes" class="alpha twelve columns">
+  <legend>Order Notes</legend>
+  <a name="important_notes"></a>
+
+  <%= render partial: 'spree/admin/note', collection: @order.notes.important %>
+  <%= render partial: 'spree/admin/note', collection: @order.notes.not_important %>
+
+  <div class="form-buttons filter-actions actions" id="js-create-note-button">
+    <%= button 'Create New Note', 'plus', 'button' %>
+  </div>
+
+  <div id="js-create-note-form" style="display:none;">
+    <%= form_for @order.notes.build, url: admin_order_notes_path(@order), :method => :post do |f| %>
+      <%= render partial: 'spree/admin/notes_form', locals: {f: f} %>
+      <div class="form-buttons filter-actions actions">
+        <%= button 'Save order note' %>
+      </div>
+    <% end %>
+  </div>
+</fieldset>
+
+<%= content_for :head do %>
+  <script type="text/javascript">
+    <%= render 'spree/admin/edit_notes.js' %>
+  </script>
+<% end %>
