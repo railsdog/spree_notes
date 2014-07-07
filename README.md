@@ -6,7 +6,7 @@ Installation
 
 Add to `Gemfile`:
 
-    gem 'spree_notes', :git => 'git://github.com/railsdog/spree_related_products.git'
+    gem 'spree_notes', :git => 'git://github.com/railsdog/spree_notes.git'
 
 Run:
 
