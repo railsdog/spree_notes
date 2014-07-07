@@ -4,15 +4,17 @@
 
   <%= render partial: 'spree/admin/notes/notes_list', locals: {noteable: @order} %>
 
-  <div class="form-buttons filter-actions actions" id="js-create-note-button">
-    <%= button 'Create New Note', 'plus', 'button' %>
-  </div>
-  <div id="js-create-note-form" style="display:none;">
-    <%= form_for @order.notes.build, url: admin_order_notes_path(@order), :method => :post do |f| %>
-      <%= render partial: 'spree/admin/notes/notes_form', locals: {f: f} %>
-      <div class="form-buttons filter-actions actions">
-        <%= button 'Save order note' %>
-      </div>
-    <% end %>
+  <div class="create-note-container">
+    <div class="form-buttons filter-actions actions js-create-note-button">
+      <%= button 'Create New Note', 'plus', 'button' %>
+    </div>
+    <div class="js-create-note-form" style="display:none;">
+      <%= form_for @order.notes.build, url: admin_order_notes_path(@order), :method => :post do |f| %>
+        <%= render partial: 'spree/admin/notes/notes_form', locals: {f: f} %>
+        <div class="form-buttons filter-actions actions">
+          <%= button 'Save order note' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </fieldset>
