@@ -2,13 +2,11 @@
   <legend>User Notes</legend>
   <a name="important_notes"></a>
 
-  <%= render partial: 'spree/admin/notes/note', collection: @user.notes.important %>
-  <%= render partial: 'spree/admin/notes/note', collection: @user.notes.not_important %>
+  <%= render partial: 'spree/admin/notes/notes_list', locals: {noteable: @user} %>
 
   <div class="form-buttons filter-actions actions" id="js-create-note-button">
     <%= button 'Create New Note', 'plus', 'button' %>
   </div>
-
   <div id="js-create-note-form" style="display:none;">
     <%= form_for @user.notes.build, url: admin_user_notes_path(@user), :method => :post do |f| %>
       <%= render partial: 'spree/admin/notes/notes_form', locals: {f: f} %>
