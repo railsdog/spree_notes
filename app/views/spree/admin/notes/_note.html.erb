@@ -6,6 +6,11 @@
     <%= note.body %>
   </div>
   <div class="note-footer">
-    Created by <%= note.author %> on <%= note.created_at.to_formatted_s(:long_ordinal) %>
+    <% if defined?(show_order) && show_order %>
+      Added to order <%= link_to note.noteable.number, spree.edit_admin_order_path(note.noteable) %>
+      by <%= note.author %> on <%= note.created_at.to_formatted_s(:long_ordinal) %>
+    <% else %>
+      Created by <%= note.author %> on <%= note.created_at.to_formatted_s(:long_ordinal) %>
+    <% end %>
   </div>
 </div>

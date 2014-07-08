@@ -18,3 +18,10 @@
     </div>
   </div>
 </fieldset>
+
+<fieldset data-hook="notes_list" class="twelve columns">
+  <legend>Notes from past orders</legend>
+
+  <%= render partial: 'spree/admin/notes/note', collection: @order_notes, locals: { show_order: true } %>
+
+</fieldset>

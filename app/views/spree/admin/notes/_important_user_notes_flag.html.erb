@@ -1,4 +1,4 @@
-<% if @user.notes.important.count > 0 %>
+<% if @user.notes.important.count > 0 || @order_notes.any?{|n| n.important} %>
   <div class="important-notes-banner">
     <a href="#important_notes">
       <div class="important-notes-banner-inner twelve columns alpha">
