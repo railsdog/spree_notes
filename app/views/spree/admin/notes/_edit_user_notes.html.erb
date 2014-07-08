@@ -2,7 +2,7 @@
   <legend>User Notes</legend>
   <a name="important_notes"></a>
 
-  <%= render partial: 'spree/admin/notes/notes_list', locals: {noteable: @user} %>
+  <%= render partial: 'spree/admin/notes/note', collection: @user.notes %>
 
   <div class="create-note-container">
     <div class="form-buttons filter-actions actions js-create-note-button">

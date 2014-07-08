@@ -12,6 +12,5 @@ Spree::Admin::UsersController.class_eval do
     @order_notes = Spree::Note.where(noteable_type: 'Spree::Order')
                               .where(noteable_id: user_order_ids)
                               .includes(:noteable)
-                              .order(important: :desc, created_at: :desc)
   end
 end
