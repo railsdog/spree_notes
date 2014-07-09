@@ -3,6 +3,8 @@ require 'spree_core'
 
 module SpreeNotes
   class Engine < Rails::Engine
+    require 'spree/core'
+    isolate_namespace Spree
     engine_name 'spree_notes'
 
     def self.activate
