@@ -1,0 +1,3 @@
+module SpreeNotes
+  VERSION = '0.0.1'
+end
