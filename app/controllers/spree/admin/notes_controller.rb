@@ -22,22 +22,31 @@ class Spree::Admin::NotesController < Spree::Admin::BaseController
   end
 
   def allowed_noteables
-     %w(user order)
+    %w(user order)
   end
 
   def load_noteable
-    which = params.keys.map{|k| k.split('_').first }.find do |key|
+    which = params.keys.map { |k| k.split('_').first }.find do |key|
       allowed_noteables.include? key
     end
-    @noteable_klass = if which == "user"
+    @noteable = find_notable_data(which)
+  end
+
+  def find_notable_data(which)
+    noteable_klass = find_notable_klass(which)
+    @noteable = if noteable_klass == Spree::Order
+                  Spree::Order.includes(:notes).
+                               find_by_number!(params["#{which}_id"])
+                else
+                  noteable_klass.find(params["#{which}_id"])
+                end
+  end
+
+  def find_notable_klass(which)
+    if which == 'user'
       Spree.user_class
     else
       ("Spree::" + which.capitalize).constantize
-    end
-    @noteable = if @noteable_klass == Spree::Order
-      Spree::Order.includes(:notes).find_by_number!(params["#{which}_id"])  
-    else
-      @noteable_klass.find(params["#{which}_id"])
     end
   end
 end
