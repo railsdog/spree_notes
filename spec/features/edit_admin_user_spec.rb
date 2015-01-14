@@ -70,7 +70,9 @@ describe 'notes on edit admin user page' do
       end
 
       it 'shows the important notes exist banner' do
-        expect(find('.important-notes-banner')).to have_link '', href: '#important_notes'
+        expect(find('.important-notes-banner')).to(
+          have_link '', href: '#important_notes'
+        )
       end
     end
 
@@ -116,7 +118,7 @@ describe 'notes on edit admin user page' do
     context 'with important notes on orders' do
       let(:user) do
         user = create(:user)
-        3.times { order = create(:order_with_notes, user: user) }
+        3.times { create(:order_with_notes, user: user) }
         user
       end
 
@@ -135,7 +137,9 @@ describe 'notes on edit admin user page' do
       end
 
       it 'shows the important notes exist banner' do
-        expect(find('.important-notes-banner')).to have_link '', href: '#important_notes'
+        expect(find('.important-notes-banner')).to(
+          have_link '', href: '#important_notes'
+        )
       end
     end
 

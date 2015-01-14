@@ -16,7 +16,7 @@ describe Spree::Note, type: :model do
   context 'creating a note' do
     it 'fails if there is no author specified' do
       note = Spree::Note.new
-      expect{ note.save! }.to raise_error ActiveRecord::RecordInvalid
+      expect { note.save! }.to raise_error ActiveRecord::RecordInvalid
     end
 
     it 'succeeds if there is an author specified' do

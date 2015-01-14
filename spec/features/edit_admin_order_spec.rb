@@ -70,7 +70,9 @@ describe 'notes on edit admin order page' do
       end
 
       it 'shows the important notes exist banner' do
-        expect(find('.important-notes-banner')).to have_link '', href: '#important_notes'
+        expect(find('.important-notes-banner')).to(
+          have_link '', href: '#important_notes'
+        )
       end
     end
 

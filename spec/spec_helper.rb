@@ -34,7 +34,7 @@ Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each { |f| require f }
 
 # Configure poltergeist for javascript testing
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, { js_errors: false })
+  Capybara::Poltergeist::Driver.new(app, js_errors: false)
 end
 Capybara.javascript_driver = :poltergeist
 
@@ -57,7 +57,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with :truncation
   end
 
-  # Before each spec check if it is a Javascript test and switch between 
+  # Before each spec check if it is a Javascript test and switch between
   # using database transactions or not where necessary.
   config.before :each do
     strategy = example.metadata[:js] ? :truncation : :transaction
