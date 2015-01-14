@@ -2,14 +2,12 @@
 
 Add notes to orders and users. Only available to admins.
 
-> NOTE: Not ready for production.
-
 
 ## Installation
 
 Add this line to your Spree application's Gemfile:
 
-    gem 'spree_notes', github: 'dfreerksen/spree_notes'
+    gem 'spree_notes', github: 'railsdog/spree_notes'
 
 Run the bundle command to install it:
 
@@ -33,7 +31,7 @@ Running tests
 
 ## Contributing
 
-1. Fork it ( https://github.com/dfreerksen/spree_notes/fork )
+1. Fork it ( https://github.com/railsdog/spree_notes/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
