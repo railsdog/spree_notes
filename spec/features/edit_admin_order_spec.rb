@@ -7,7 +7,7 @@ describe 'notes on edit admin order page' do
   end
 
   context 'creating', js: true do
-    let!(:order) { create(:order) }
+    let!(:order) { create(:completed_order_with_totals) }
 
     before(:each) do
       visit spree.edit_admin_order_path(order)
@@ -51,6 +51,7 @@ describe 'notes on edit admin order page' do
   context 'listing order notes. An Order' do
     context 'with important notes' do
       let(:order) { create(:order_with_notes) }
+
       before(:each) do
         visit spree.edit_admin_order_path(order)
       end

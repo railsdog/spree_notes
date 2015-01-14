@@ -1,3 +1,4 @@
+<!-- insert_after 'erb[silent]:contains("if order.line_items.exists?")' -->
 <fieldset data-hook="notes_edit" id="admin_order_edit_notes" class="alpha twelve columns">
   <legend>Order Notes</legend>
   <a name="important_notes"></a>
@@ -9,7 +10,7 @@
       <%= button 'Create New Note', 'plus', 'button' %>
     </div>
     <div class="js-create-note-form" style="display:none;">
-      <%= form_for @order.notes.build, url: admin_order_notes_path(@order), :method => :post do |f| %>
+      <%= form_for @order.notes.build, url: admin_order_notes_path(@order), method: :post do |f| %>
         <%= render partial: 'spree/admin/notes/notes_form', locals: {f: f} %>
         <div class="form-buttons filter-actions actions">
           <%= button 'Save order note' %>
