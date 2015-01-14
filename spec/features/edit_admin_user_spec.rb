@@ -25,25 +25,25 @@ describe 'notes on edit admin user page' do
     end
 
     it 'can successfully create an unimportant note' do
-      note_body = "This is a new note #{rand(10).to_s}"
+      note_body = "This is a new note #{rand(10)}"
       within_fieldset 'admin_user_edit_notes' do
         click_button 'Create New Note'
         fill_in 'Note', with: note_body
         click_button 'Save user note'
       end
-      assert_flash_success 'Note Saved'
+      assert_flash_success 'Note saved'
       expect(find('.note:not(.important) .note-content')).to have_text note_body
     end
 
     it 'can successfully create an important note' do
-      note_body = "This is a new note #{rand(10).to_s}"
+      note_body = "This is a new note #{rand(10)}"
       within_fieldset 'admin_user_edit_notes' do
         click_button 'Create New Note'
         fill_in 'Note', with: note_body
         check 'note_important'
         click_button 'Save user note'
       end
-      assert_flash_success 'Note Saved'
+      assert_flash_success 'Note saved'
       expect(find('.note.important .note-content')).to have_text note_body
     end
   end

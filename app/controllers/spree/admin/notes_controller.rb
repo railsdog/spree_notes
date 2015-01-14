@@ -1,6 +1,5 @@
 class Spree::Admin::NotesController < Spree::Admin::BaseController
-
-  before_filter :load_noteable
+  before_action :load_noteable
 
   def create
     @note = Spree::Note.new(note_params)
@@ -8,18 +7,25 @@ class Spree::Admin::NotesController < Spree::Admin::BaseController
     @note.author = try_spree_current_user.email
     @note.save
 
-    flash[:success] = "Note Saved"
-    redirect_to :back
+    flash[:success] = 'Note saved'
+    redirect_to request.referer.nil? ? admin_path : :back
   end
 
   protected
 
+  def data_params
+    [:body, :important]
+  end
+
   def note_params
-    params.require(:note).permit(:body, :important)
+    params.require(:note).permit(data_params)
+  end
+
+  def allowed_noteables
+     %w(user order)
   end
 
   def load_noteable
-    allowed_noteables = %w(user order)
     which = params.keys.map{|k| k.split('_').first }.find do |key|
       allowed_noteables.include? key
     end
