@@ -9,8 +9,8 @@ Spree::Admin::UsersController.class_eval do
   # adds @order_notes to the render context
   def load_user_orders
     user_order_ids = Spree::Order.where(user: @user).pluck(:id)
-    @order_notes = Spree::Note.where(noteable_type: 'Spree::Order')
-                              .where(noteable_id: user_order_ids)
-                              .includes(:noteable)
+    @order_notes = Spree::Note.where(noteable_type: 'Spree::Order').
+                               where(noteable_id: user_order_ids).
+                               includes(:noteable)
   end
 end

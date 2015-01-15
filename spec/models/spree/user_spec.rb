@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Spree.user_class do
+describe Spree.user_class, type: :model do
   let(:user) { create(:user_with_notes) }
 
   it 'can have many notes' do

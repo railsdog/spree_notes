@@ -1,3 +1,4 @@
+<!-- insert_after '[data-hook="admin_user_edit_general_settings"]' -->
 <fieldset data-hook="notes_edit" id="admin_user_edit_notes" class="twelve columns">
   <legend>User Notes</legend>
   <a name="important_notes"></a>
@@ -9,7 +10,7 @@
       <%= button 'Create New Note', 'plus', 'button' %>
     </div>
     <div class="js-create-note-form" style="display:none;">
-      <%= form_for @user.notes.build, url: admin_user_notes_path(@user), :method => :post do |f| %>
+      <%= form_for @user.notes.build, url: admin_user_notes_path(@user), method: :post do |f| %>
         <%= render partial: 'spree/admin/notes/notes_form', locals: {f: f} %>
         <div class="form-buttons filter-actions actions">
           <%= button 'Save user note' %>
@@ -23,5 +24,4 @@
   <legend>Notes from past orders</legend>
 
   <%= render partial: 'spree/admin/notes/note', collection: @order_notes, locals: { show_order: true } %>
-
 </fieldset>
