@@ -1,6 +1,5 @@
 class Spree::Admin::NotesController < Spree::Admin::BaseController
-
-  before_filter :load_noteable
+  before_action :load_noteable
 
   def create
     @note = Spree::Note.new(note_params)
@@ -8,30 +7,46 @@ class Spree::Admin::NotesController < Spree::Admin::BaseController
     @note.author = try_spree_current_user.email
     @note.save
 
-    flash[:success] = "Note Saved"
-    redirect_to :back
+    flash[:success] = 'Note saved'
+    redirect_to request.referer.nil? ? admin_path : :back
   end
 
   protected
 
+  def data_params
+    [:body, :important]
+  end
+
   def note_params
-    params.require(:note).permit(:body, :important)
+    params.require(:note).permit(data_params)
+  end
+
+  def allowed_noteables
+    %w(user order)
   end
 
   def load_noteable
-    allowed_noteables = %w(user order)
-    which = params.keys.map{|k| k.split('_').first }.find do |key|
+    which = params.keys.map { |k| k.split('_').first }.find do |key|
       allowed_noteables.include? key
     end
-    @noteable_klass = if which == "user"
+    @noteable = find_notable_data(which)
+  end
+
+  def find_notable_data(which)
+    noteable_klass = find_notable_klass(which)
+    @noteable = if noteable_klass == Spree::Order
+                  Spree::Order.includes(:notes).
+                               find_by_number!(params["#{which}_id"])
+                else
+                  noteable_klass.find(params["#{which}_id"])
+                end
+  end
+
+  def find_notable_klass(which)
+    if which == 'user'
       Spree.user_class
     else
-      ("Spree::" + which.capitalize).constantize
-    end
-    @noteable = if @noteable_klass == Spree::Order
-      Spree::Order.includes(:notes).find_by_number!(params["#{which}_id"])  
-    else
-      @noteable_klass.find(params["#{which}_id"])
+      "Spree::#{which.capitalize}".constantize
     end
   end
 end

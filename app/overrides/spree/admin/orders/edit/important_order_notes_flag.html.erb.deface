@@ -1,9 +1,10 @@
-<% if @user.notes.important.count > 0 || (@order_notes && @order_notes.any?{|n| n.important}) %>
+<!-- insert_bottom '[data-hook="admin_order_edit_header"]' -->
+<% if @order.notes.important.count > 0 %>
   <div class="important-notes-banner">
     <a href="#important_notes">
       <div class="important-notes-banner-inner twelve columns alpha">
         <%= fa_icon 'exclamation-circle' %>
-        Please read the important notes for this user
+         Please read the important notes for this order
       </div>
     </a>
   </div>

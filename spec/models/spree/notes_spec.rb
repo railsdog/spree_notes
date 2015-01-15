@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Spree::Note do
+describe Spree::Note, type: :model do
   context 'a valid note' do
     let(:note) { create(:note) }
 
@@ -16,7 +16,7 @@ describe Spree::Note do
   context 'creating a note' do
     it 'fails if there is no author specified' do
       note = Spree::Note.new
-      expect{ note.save! }.to raise_error ActiveRecord::RecordInvalid
+      expect { note.save! }.to raise_error ActiveRecord::RecordInvalid
     end
 
     it 'succeeds if there is an author specified' do
@@ -33,13 +33,13 @@ describe Spree::Note do
 
     it '.important scope returns only important notes' do
       Spree::Note.important.each do |note|
-        expect(note.important).to be_true
+        expect(note.important).to be_truthy
       end
     end
 
     it '.not_important scope returns only unimportant notes' do
       Spree::Note.not_important.each do |note|
-        expect(note.important).to be_false
+        expect(note.important).to be_falsey
       end
     end
 
@@ -47,7 +47,7 @@ describe Spree::Note do
       it 'with important notes first primarily' do
         Spree::Note.all.each_cons(2) do |current_note, next_note|
           if current_note.important != next_note.important
-            expect(next_note.important).to be_false
+            expect(next_note.important).to be_falsey
           end
         end
       end
