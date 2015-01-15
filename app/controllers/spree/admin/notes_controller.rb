@@ -46,7 +46,7 @@ class Spree::Admin::NotesController < Spree::Admin::BaseController
     if which == 'user'
       Spree.user_class
     else
-      ("Spree::" + which.capitalize).constantize
+      "Spree::#{which.capitalize}".constantize
     end
   end
 end
