@@ -5,9 +5,21 @@ Add notes to orders and users. Only available to admins.
 
 ## Installation
 
+#### Branch
+
+Add this line to your Spree application's Gemfile:
+
+    gem 'spree_notes', github: 'railsdog/spree_notes', branch: '2-4-stable'
+
+#### Bleeding Edge
+
 Add this line to your Spree application's Gemfile:
 
     gem 'spree_notes', github: 'railsdog/spree_notes'
+
+> Note: The master branch is not guaranteed to be in a fully functioning state. It is unwise to use this branch in a production system.
+
+#### Generator
 
 Run the bundle command to install it:
 
